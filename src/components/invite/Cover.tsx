@@ -4,10 +4,10 @@ import gateL from "@/assets/gate-left.png.asset.json";
 import gateR from "@/assets/gate-right.png.asset.json";
 import monogram from "@/assets/monogram.png.asset.json";
 import openBtn from "@/assets/open-btn.png.asset.json";
+import gardenPath from "@/assets/garden-path.webp.asset.json";
 import leaves from "@/assets/garden-leaves.webp.asset.json";
 import { ButterflyFlock } from "./Butterfly";
 import { Twinkles } from "./LiveOrnaments";
-import { GoldFrame } from "./Decor";
 import { WEDDING } from "@/lib/wedding";
 
 const EASE = [0.65, 0, 0.35, 1] as const;
@@ -51,12 +51,11 @@ export function Cover({ guest, onOpenStart, onOpened }: { guest: string; onOpenS
       {/* night garden backdrop — a light opening from the doorway reveals the garden beneath */}
       <motion.div className="absolute inset-0" style={opening ? { WebkitMaskImage: mask, maskImage: mask } : {}}>
         <div className="absolute inset-0 bg-cover-crimson">
-          <img src={leaves.url} alt="" className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-soft-light" />
-          <div className="cover-damask absolute inset-0" />
+          <img src={gardenPath.url} alt="" className="absolute inset-0 h-full w-full object-cover opacity-70 mix-blend-luminosity" />
+          <img src={leaves.url} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-soft-light" />
           <div className="cover-vignette absolute inset-0" />
           <Twinkles count={14} seed={7} />
         </div>
-        <GoldFrame variant="ornate" />
         <ButterflyFlock count={3} />
       </motion.div>
 

@@ -6,6 +6,8 @@ import monogram from "@/assets/monogram.png.asset.json";
 import openBtn from "@/assets/open-btn.png.asset.json";
 import leaves from "@/assets/garden-leaves.webp.asset.json";
 import { ButterflyFlock } from "./Butterfly";
+import { Twinkles } from "./LiveOrnaments";
+import { GoldFrame } from "./Decor";
 import { WEDDING } from "@/lib/wedding";
 
 const EASE = [0.65, 0, 0.35, 1] as const;
@@ -48,10 +50,13 @@ export function Cover({ guest, onOpenStart, onOpened }: { guest: string; onOpenS
     >
       {/* night garden backdrop — a light opening from the doorway reveals the garden beneath */}
       <motion.div className="absolute inset-0" style={opening ? { WebkitMaskImage: mask, maskImage: mask } : {}}>
-        <div className="absolute inset-0 bg-night">
-          <img src={leaves.url} alt="" className="absolute inset-0 h-full w-full object-cover opacity-60" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.24_0.055_258/0.35),oklch(0.16_0.04_260/0.92)_75%)]" />
+        <div className="absolute inset-0 bg-cover-crimson">
+          <img src={leaves.url} alt="" className="absolute inset-0 h-full w-full object-cover opacity-25 mix-blend-soft-light" />
+          <div className="cover-damask absolute inset-0" />
+          <div className="cover-vignette absolute inset-0" />
+          <Twinkles count={14} seed={7} />
         </div>
+        <GoldFrame variant="ornate" />
         <ButterflyFlock count={3} />
       </motion.div>
 
@@ -88,7 +93,7 @@ export function Cover({ guest, onOpenStart, onOpened }: { guest: string; onOpenS
           <motion.img
             src={gateL.url}
             alt=""
-            className="absolute left-0 top-0 h-full w-1/2 object-fill drop-shadow-[0_10px_25px_oklch(0.1_0.03_260/0.7)]"
+            className="absolute left-0 top-0 h-full w-1/2 object-fill drop-shadow-[0_10px_25px_oklch(0.15_0.06_20/0.75)]"
             style={{ transformOrigin: "left center", backfaceVisibility: "hidden" }}
             animate={opening ? { rotateY: -112, opacity: [1, 1, 0] } : { rotateY: 0 }}
             transition={{ duration: DOOR, ease: EASE, opacity: { duration: DOOR + 0.6, times: [0, 0.75, 1] } }}
@@ -96,7 +101,7 @@ export function Cover({ guest, onOpenStart, onOpened }: { guest: string; onOpenS
           <motion.img
             src={gateR.url}
             alt=""
-            className="absolute right-0 top-0 h-full w-1/2 object-fill drop-shadow-[0_10px_25px_oklch(0.1_0.03_260/0.7)]"
+            className="absolute right-0 top-0 h-full w-1/2 object-fill drop-shadow-[0_10px_25px_oklch(0.15_0.06_20/0.75)]"
             style={{ transformOrigin: "right center", backfaceVisibility: "hidden" }}
             animate={opening ? { rotateY: 112, opacity: [1, 1, 0] } : { rotateY: 0 }}
             transition={{ duration: DOOR, ease: EASE, opacity: { duration: DOOR + 0.6, times: [0, 0.75, 1] } }}

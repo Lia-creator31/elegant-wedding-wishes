@@ -438,3 +438,20 @@
 .twinkle-soft { animation: twinkle-soft 3s ease-in-out infinite; }
 .glint { animation: glint 4.5s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .petal-lane, .petal-sway, .petal-flip, .twinkle, .twinkle-soft, .glint { animation: none; } }
+
+/* luxurious crimson backdrop for the cover (halaman depan) */
+@utility bg-cover-crimson {
+  background:
+    radial-gradient(ellipse at 50% 38%, oklch(0.5 0.17 22), oklch(0.36 0.14 20) 45%, oklch(0.2 0.08 18) 100%);
+}
+.cover-damask {
+  background-image:
+    radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--royal-gold) 14%, transparent) 1.5px, transparent 2px),
+    repeating-linear-gradient(45deg, color-mix(in oklab, var(--royal-gold) 6%, transparent) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(-45deg, color-mix(in oklab, var(--royal-gold) 6%, transparent) 0 1px, transparent 1px 22px);
+  background-size: 22px 22px, auto, auto;
+  opacity: 0.8;
+}
+.cover-vignette {
+  background: radial-gradient(ellipse at 50% 42%, color-mix(in oklab, var(--royal-gold-light) 18%, transparent), transparent 40%, oklch(0.12 0.05 18 / 0.7) 100%);
+}

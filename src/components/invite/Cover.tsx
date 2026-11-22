@@ -60,21 +60,33 @@ export function Cover({ guest, onOpenStart, onOpened }: { guest: string; onOpenS
         <ButterflyFlock count={3} />
       </motion.div>
 
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
-        <motion.p
-          className="text-[11px] uppercase tracking-[0.45em] text-cream/80"
-          animate={opening ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
+      <div className="relative z-10 flex h-full flex-col items-center justify-start px-6 pb-5 pt-[7vh] text-center">
+        <motion.div
+          className="flex flex-col items-center"
+          animate={opening ? { opacity: 0, y: 14 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          The Wedding of
-        </motion.p>
-
+          <motion.p
+            className="text-[11px] uppercase tracking-[0.45em] text-cream/80"
+            animate={opening ? { opacity: 0, y: -10 } : { opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            The Wedding of
+          </motion.p>
+          <h1 className="mt-2 font-script text-5xl text-gold-grad sm:text-6xl">
+            {WEDDING.bride} & {WEDDING.groom}
+          </h1>
+          <p className="mt-1 font-display text-lg italic text-cream/85">18 & 20 Desember 2026</p>
+          <div className="mt-5 h-px w-24 bg-gold-grad opacity-60" />
+          <p className="mt-4 text-[10px] uppercase tracking-[0.35em] text-cream/70">Kepada Yth.</p>
+          <p className="max-w-xs truncate font-display text-xl font-semibold text-ivory">{guest}</p>
+        </motion.div>
         {/* The garden door — a realistic iron gate standing inside a rose-and-hydrangea stone arch */}
         <button
           ref={doorRef}
           onClick={open}
           aria-label="Buka pintu taman"
-          className="group relative mt-3 aspect-[2/3] h-[min(54vh,440px)] cursor-pointer"
+          className="group relative mt-auto aspect-[2/3] h-[min(46vh,400px)] cursor-pointer"
           style={{ perspective: 1100 }}
         >
           {/* warm light glowing through the archway */}
@@ -112,20 +124,12 @@ export function Cover({ guest, onOpenStart, onOpened }: { guest: string; onOpenS
           <div className="cover-ground-shadow absolute -bottom-[2%] left-[4%] h-[7%] w-[92%]" />
           <img src={archImg.url} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-contain drop-shadow-[0_14px_22px_oklch(0.1_0.04_260/0.65)]" />
         </button>
-
         <motion.div
           className="flex flex-col items-center"
           animate={opening ? { opacity: 0, y: 14 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="mt-5 font-script text-5xl text-gold-grad sm:text-6xl">
-            {WEDDING.bride} & {WEDDING.groom}
-          </h1>
-          <p className="mt-1 font-display text-lg italic text-cream/85">18 & 20 Desember 2026</p>
-          <div className="mt-5 h-px w-24 bg-gold-grad opacity-60" />
-          <p className="mt-4 text-[10px] uppercase tracking-[0.35em] text-cream/70">Kepada Yth.</p>
-          <p className="max-w-xs truncate font-display text-xl font-semibold text-ivory">{guest}</p>
-          <button onClick={open} className="floaty mt-5 w-24 transition-transform hover:scale-105 sm:w-28" aria-label="Buka Undangan">
+          <button onClick={open} className="floaty -mt-2 w-20 transition-transform hover:scale-105 sm:w-28" aria-label="Buka Undangan">
             <img src={openBtn.url} alt="Buka Undangan" className="w-full" />
           </button>
           <p className="mt-2 text-[10px] uppercase tracking-[0.3em] text-cream/60">Sentuh pintu untuk masuk</p>

@@ -440,9 +440,15 @@
 @media (prefers-reduced-motion: reduce) { .petal-lane, .petal-sway, .petal-flip, .twinkle, .twinkle-soft, .glint { animation: none; } }
 
 /* luxurious crimson backdrop for the cover (halaman depan) */
-@utility bg-cover-crimson {
+@utility bg-cover-royal {
   background:
-    radial-gradient(ellipse at 50% 38%, oklch(0.5 0.17 22), oklch(0.36 0.14 20) 45%, oklch(0.2 0.08 18) 100%);
+    radial-gradient(ellipse at 50% 58%, oklch(0.46 0.16 22 / 0.95), transparent 62%),
+    linear-gradient(180deg, oklch(0.24 0.08 262) 0%, oklch(0.3 0.09 258) 30%, oklch(0.38 0.13 18) 70%, oklch(0.2 0.08 18) 100%);
+}
+.cover-ground-shadow {
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, oklch(0.08 0.03 260 / 0.75), transparent 70%);
+  filter: blur(4px);
 }
 .cover-damask {
   background-image:
@@ -453,5 +459,5 @@
   opacity: 0.8;
 }
 .cover-vignette {
-  background: radial-gradient(ellipse at 50% 42%, color-mix(in oklab, var(--royal-gold-light) 18%, transparent), transparent 40%, oklch(0.12 0.05 18 / 0.7) 100%);
+  background: radial-gradient(ellipse at 50% 45%, color-mix(in oklab, var(--royal-gold-light) 14%, transparent), transparent 42%, oklch(0.12 0.05 262 / 0.7) 100%);
 }

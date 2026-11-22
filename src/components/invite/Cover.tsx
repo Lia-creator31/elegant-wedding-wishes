@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { animate, motion, useMotionTemplate, useMotionValue, useReducedMotion, useTransform } from "framer-motion";
-import gateL from "@/assets/gate-left.png.asset.json";
-import gateR from "@/assets/gate-right.png.asset.json";
+import gateL from "@/assets/gate-left-real.webp.asset.json";
+import gateR from "@/assets/gate-right-real.webp.asset.json";
+import archImg from "@/assets/garden-arch.webp.asset.json";
 import monogram from "@/assets/monogram.png.asset.json";
 import openBtn from "@/assets/open-btn.png.asset.json";
 import gardenPath from "@/assets/garden-path.webp.asset.json";
@@ -50,7 +51,7 @@ export function Cover({ guest, onOpenStart, onOpened }: { guest: string; onOpenS
     >
       {/* night garden backdrop — a light opening from the doorway reveals the garden beneath */}
       <motion.div className="absolute inset-0" style={opening ? { WebkitMaskImage: mask, maskImage: mask } : {}}>
-        <div className="absolute inset-0 bg-cover-crimson">
+        <div className="absolute inset-0 bg-cover-royal">
           <img src={gardenPath.url} alt="" className="absolute inset-0 h-full w-full object-cover opacity-70 mix-blend-luminosity" />
           <img src={leaves.url} alt="" className="absolute inset-0 h-full w-full object-cover opacity-30 mix-blend-soft-light" />
           <div className="cover-vignette absolute inset-0" />
@@ -68,43 +69,48 @@ export function Cover({ guest, onOpenStart, onOpened }: { guest: string; onOpenS
           The Wedding of
         </motion.p>
 
-        {/* The garden door — the single entry point */}
+        {/* The garden door — a realistic iron gate standing inside a rose-and-hydrangea stone arch */}
         <button
           ref={doorRef}
           onClick={open}
           aria-label="Buka pintu taman"
-          className="group relative mt-5 aspect-[232/269] h-[min(42vh,320px)] cursor-pointer"
+          className="group relative mt-3 aspect-[2/3] h-[min(54vh,440px)] cursor-pointer"
           style={{ perspective: 1100 }}
         >
-          {/* warm light behind the door */}
+          {/* warm light glowing through the archway */}
           <motion.div
-            className="glow-pulse absolute inset-[8%] rounded-t-full bg-[radial-gradient(ellipse_at_center,oklch(0.92_0.07_85/0.9),oklch(0.79_0.095_80/0.35)_45%,transparent_75%)] blur-md"
+            className="glow-pulse absolute left-[30%] top-[14%] h-[76%] w-[40%] rounded-t-full bg-[radial-gradient(ellipse_at_center,oklch(0.92_0.07_85/0.85),oklch(0.79_0.095_80/0.3)_45%,transparent_75%)] blur-md"
             animate={opening ? { opacity: 1, scale: 1.25 } : {}}
             transition={{ duration: 1.6 }}
           />
           <motion.img
             src={monogram.url}
             alt="Monogram S&L"
-            className="absolute inset-0 m-auto h-3/5 object-contain"
+            className="absolute left-1/2 top-[17%] h-[24%] -translate-x-1/2 object-contain"
             animate={opening ? { opacity: 0 } : { opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
           />
-          <motion.img
-            src={gateL.url}
-            alt=""
-            className="absolute left-0 top-0 h-full w-1/2 object-fill drop-shadow-[0_10px_25px_oklch(0.15_0.06_20/0.75)]"
-            style={{ transformOrigin: "left center", backfaceVisibility: "hidden" }}
-            animate={opening ? { rotateY: -112, opacity: [1, 1, 0] } : { rotateY: 0 }}
-            transition={{ duration: DOOR, ease: EASE, opacity: { duration: DOOR + 0.6, times: [0, 0.75, 1] } }}
-          />
-          <motion.img
-            src={gateR.url}
-            alt=""
-            className="absolute right-0 top-0 h-full w-1/2 object-fill drop-shadow-[0_10px_25px_oklch(0.15_0.06_20/0.75)]"
-            style={{ transformOrigin: "right center", backfaceVisibility: "hidden" }}
-            animate={opening ? { rotateY: 112, opacity: [1, 1, 0] } : { rotateY: 0 }}
-            transition={{ duration: DOOR, ease: EASE, opacity: { duration: DOOR + 0.6, times: [0, 0.75, 1] } }}
-          />
+          <div className="absolute left-[28.4%] top-[44.6%] h-[45.2%] w-[45.2%]" style={{ perspective: 900 }}>
+            <motion.img
+              src={gateL.url}
+              alt=""
+              className="absolute left-0 top-0 h-full w-1/2 object-fill drop-shadow-[0_8px_14px_oklch(0.12_0.04_260/0.7)]"
+              style={{ transformOrigin: "left center", backfaceVisibility: "hidden" }}
+              animate={opening ? { rotateY: -105, opacity: [1, 1, 0] } : { rotateY: 0 }}
+              transition={{ duration: DOOR, ease: EASE, opacity: { duration: DOOR + 0.6, times: [0, 0.75, 1] } }}
+            />
+            <motion.img
+              src={gateR.url}
+              alt=""
+              className="absolute right-0 top-0 h-full w-1/2 object-fill drop-shadow-[0_8px_14px_oklch(0.12_0.04_260/0.7)]"
+              style={{ transformOrigin: "right center", backfaceVisibility: "hidden" }}
+              animate={opening ? { rotateY: 105, opacity: [1, 1, 0] } : { rotateY: 0 }}
+              transition={{ duration: DOOR, ease: EASE, opacity: { duration: DOOR + 0.6, times: [0, 0.75, 1] } }}
+            />
+          </div>
+          {/* the stone arch sits in front so the pillars hide the hinges; grounded by a soft contact shadow */}
+          <div className="cover-ground-shadow absolute -bottom-[2%] left-[4%] h-[7%] w-[92%]" />
+          <img src={archImg.url} alt="" className="pointer-events-none absolute inset-0 h-full w-full object-contain drop-shadow-[0_14px_22px_oklch(0.1_0.04_260/0.65)]" />
         </button>
 
         <motion.div
